@@ -1,2 +1,0 @@
-# Belhard
-Machine learning

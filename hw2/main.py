@@ -29,14 +29,14 @@ df = df[["Survived", "Pclass", "Sex", "Age", "SibSp", "Parch", "Fare"]]
 
 
 imputer = SimpleImputer(strategy='mean')
-df[['Age', 'Fare']] = imputer.fit_transform(df[['Age', 'Fare']])
+df[['Age']] = imputer.fit_transform(df[['Age']])
 
 
 X = df.drop("Survived", axis=1)
 y = df["Survived"]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, stratify=y, random_state=42)
 
-classifier = SimpleClassifier(max_iter=200)
+classifier = SimpleClassifier(max_iter=1000)
 classifier.train(X_train, y_train)
 
 accuracy = classifier.evaluate(X_test, y_test)

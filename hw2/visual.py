@@ -38,10 +38,17 @@ def add_survival_countplot(df, save_path=None):
 
 def add_survival_by_sex(df, save_path=None):
     plt.figure()
-    sns.countplot(x='Sex', hue='Survived', data=df)
+    df_copy = df.copy()
+    df_copy['Sex'] = df_copy['Sex'].map({0: 'Женщины', 1: 'Мужчины'})
+
+    sns.countplot(x='Sex', hue='Survived', data=df_copy)
     plt.title('Выживаемость по полу')
+    plt.xlabel('Пол')
+    plt.ylabel('Количество')
+
     if save_path:
         plt.savefig(save_path)
+
     visualizations['survival_by_sex'] = plt.gcf()
 
 def add_survival_heatmap(df, save_path=None):
